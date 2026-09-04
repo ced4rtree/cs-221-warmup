@@ -20,11 +20,19 @@ INCLUDED FILES:
    squares.
  * MagicSquareInterface.java - Definition for what a magic square implementation
    should be able to do.
+
+ The following files are meant for developers/tinkerers. You can disregard them
+ if you are a normal user.
+
  * MagicSquareTest.java - Meant for developers to be able to test any changes
-   they've made. Disregard if you are a normal user.
+   they've made.
  * (in)validNxN - Various different files containing example magic square files.
-   Primarily used for developer testing purposes. Disregard if you are a normal
-   user.
+   Primarily used for developer testing purposes.
+ * shell.nix - A file defining a nix dev-shell with both OpenJDK25 and the
+   Eclipse JDT Java Language Server. This isn't required to build, but is a
+   nicety for people who use nix.
+ * .envrc - Another file meant for nix. This enables a program called direnv to
+   automatically load the developer into the nix shell.
 
 COMPILING AND RUNNING:
 
