@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -141,24 +142,29 @@ public class MagicSquare implements MagicSquareInterface {
      * also be thrown when the file is formatted incorrectly.
      */
     private int[][] readMatrix(String filename) throws FileNotFoundException {
-        // TODO: need to build in more robust validation, handle improperly formatted files
-
         File file = new File(filename);
+
         // may throw FileNotFoundException; don't need to plumb that logic manually
-        Scanner scanner = new Scanner(file);
+        try (Scanner scanner = new Scanner(file)) {
+            int dimensionality = scanner.nextInt();
 
-        int dimensionality = scanner.nextInt();
+            int[][] ret = new int[dimensionality][dimensionality];
+            for (int i = 0; i < dimensionality; i++) {
+                for (int j = 0; j < dimensionality; j++) {
+                    try {
+                        ret[i][j] = scanner.nextInt();
+                    } catch (NoSuchElementException e) {
+                        // InputMismatchException inherits from
+                        // NoSuchElementException, so don't need to handle that case
+                        // separately.
 
-        int[][] ret = new int[dimensionality][dimensionality];
-        for (int i = 0; i < dimensionality; i++) {
-            for (int j = 0; j < dimensionality; j++) {
-                ret[i][j] = scanner.nextInt();
+                        throw new FileNotFoundException();
+                    }
+                }
             }
+
+            return ret;
         }
-
-        scanner.close();
-
-        return ret;
     }
 
     public int[][] getMatrix() {
