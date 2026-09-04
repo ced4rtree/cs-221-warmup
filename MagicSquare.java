@@ -102,7 +102,19 @@ public class MagicSquare implements MagicSquareInterface {
         writeMatrix(data, filename);
     }
 
-    // TODO: Please comment me!
+    /**
+     * Write out the supplied {@code matrix} to the file named {@code filename}
+     *
+     * <p>This data will be written out in the same format specified in the
+     * javadocs for the {@link MagicSquare#MagicSquare(String) MagicSquare
+     * constructor} that reads data from a file.</p>
+     *
+     * @param matrix The contents of the matrix to be written out
+     *
+     * @param filename The path to the file that should contain the matrix data.
+     *
+     * @throws IOException when the file cannot be opened or written to.
+     */
     private void writeMatrix(int[][] matrix, String filename) throws IOException {
         File outFile = new File(filename);
         String dataStr = stringifyData();
@@ -112,7 +124,22 @@ public class MagicSquare implements MagicSquareInterface {
         }
     }
 
-    // TODO: Please comment me!
+    /*
+     * Read matrix data from a file.
+     *
+     * <p>This data should be formatted as specified in the javadocs for the
+     * {@link MagicSquare#MagicSquare(String) MagicSquare constructor} that
+     * reads data from a file.
+     *
+     * @param filename Path to the file that contains the matrix data.
+     *
+     * @return The matrix data located within the file at {@code filename} in
+     * the form of an int[][]
+     *
+     * @throws FileNotFoundException when the supplied {@code filename} cannot
+     * be found or the user has insufficient read access to the file. This can
+     * also be thrown when the file is formatted incorrectly.
+     */
     private int[][] readMatrix(String filename) throws FileNotFoundException {
         // TODO: need to build in more robust validation, handle improperly formatted files
 
@@ -134,7 +161,6 @@ public class MagicSquare implements MagicSquareInterface {
         return ret;
     }
 
-    // TODO: Please comment me!
     public int[][] getMatrix() {
         int[][] ret = new int[data.length][data[0].length];
         for (int i = 0; i < data.length; i++) {
@@ -145,7 +171,6 @@ public class MagicSquare implements MagicSquareInterface {
         return ret;
     }
 
-    // TODO: Please comment me!
     public boolean isMagicSquare() {
         if (data.length <= 0) {
             return true;
@@ -235,7 +260,6 @@ public class MagicSquare implements MagicSquareInterface {
         return ret;
     }
 
-    // TODO: Please comment me!
     public String toString() {
         String ret = "The matrix\n";
         ret += stringifyData();
