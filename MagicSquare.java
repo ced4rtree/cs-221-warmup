@@ -146,13 +146,47 @@ public class MagicSquare implements MagicSquareInterface {
 
         // may throw FileNotFoundException; don't need to plumb that logic manually
         try (Scanner scanner = new Scanner(file)) {
-            int dimensionality = scanner.nextInt();
+            String firstLine = scanner.nextLine();
+
+            int dimensionality;
+            try {
+                dimensionality = Integer.parseInt(firstLine);
+            } catch (NumberFormatException e) {
+                // file not formatted properly, error out
+                throw new FileNotFoundException();
+            }
 
             int[][] ret = new int[dimensionality][dimensionality];
+
             for (int i = 0; i < dimensionality; i++) {
-                for (int j = 0; j < dimensionality; j++) {
-                    ret[i][j] = scanner.nextInt();
+                // grab the line
+                String line;
+                try {
+                    line = scanner.nextLine();
+                } catch (NoSuchElementException e) {
+                    // file formatted improperly, error out
+                    throw new FileNotFoundException();
                 }
+
+                // split line into different elements
+                String[] numStrings = line.split(" ");
+                if (numStrings.length != dimensionality) {
+                    // file formatted improperly, error out
+                    throw new FileNotFoundException();
+                }
+
+                // parse the elements from the line
+                int[] nums;
+                try {
+                    nums = Arrays.stream(numStrings)
+                            .mapToInt(Integer::parseInt)
+                            .toArray();
+                } catch (NumberFormatException e) {
+                    // file formatted improperly, error out
+                    throw new FileNotFoundException();
+                }
+
+                ret[i] = nums;
             }
 
             return ret;
