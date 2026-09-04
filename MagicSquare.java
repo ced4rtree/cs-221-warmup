@@ -105,7 +105,7 @@ public class MagicSquare implements MagicSquareInterface {
     // TODO: Please comment me!
     private void writeMatrix(int[][] matrix, String filename) throws IOException {
         File outFile = new File(filename);
-        String dataStr = stringifyData(0);
+        String dataStr = stringifyData();
         try (PrintWriter printer = new PrintWriter(outFile)) {
             printer.printf("%d\n", matrix.length);
             printer.print(dataStr);
@@ -216,14 +216,10 @@ public class MagicSquare implements MagicSquareInterface {
      * @return A representation of this square's data as a string, where each
      * column is separated by a space, and each row is separated by a newline.
      */
-    private String stringifyData(int padding) {
+    private String stringifyData() {
         String ret = "";
         for (int[] row : data) {
             String rowStr = "";
-
-            for (int i = 0; i < padding; i++) {
-                rowStr += " ";
-            }
 
             for (int element : row) {
                 rowStr += String.format("%d ", element);
@@ -242,7 +238,7 @@ public class MagicSquare implements MagicSquareInterface {
     // TODO: Please comment me!
     public String toString() {
         String ret = "The matrix\n";
-        ret += stringifyData(2);
+        ret += stringifyData();
         ret += "is ";
         if (!dataIsMagic) {
             ret += "not ";
