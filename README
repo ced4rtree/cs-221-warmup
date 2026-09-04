@@ -1,5 +1,87 @@
-SOURCES:
+****************
+* Warmup
+* CS 221
+* September 4, 2026
+* Cedar Piehl
+****************
 
-https://stackoverflow.com/questions/3495926/can-i-catch-multiple-java-exceptions-in-the-same-catch-clause
+OVERVIEW:
 
-https://stackoverflow.com/questions/5585779/how-do-i-convert-a-string-to-an-int-in-java
+ This program generates and verifies "magic squares," which are squares of size
+ NxN where every row, column, and diagonal all sum to the same number.
+
+INCLUDED FILES:
+
+ * README - The file you're in now! Explains various behaviours users can expect
+   of the program.
+ * MagicSquareDriver.java - The program that the user interfaces with to
+   create/check magic squares.
+ * MagicSquare.java - Primary logic holder for reading/writing/generating magic
+   squares.
+ * MagicSquareInterface.java - Definition for what a magic square implementation
+   should be able to do.
+ * MagicSquareTest.java - Meant for developers to be able to test any changes
+   they've made. Disregard if you are a normal user.
+ * (in)validNxN - Various different files containing example magic square files.
+   Primarily used for developer testing purposes. Disregard if you are a normal
+   user.
+
+COMPILING AND RUNNING:
+
+ From the directory containing the source files (and this file you're currently
+ reading), execute the following command to compile the source code into a
+ binary you can run:
+
+ $ javac *.java
+
+ Following this, you can execute the code using this command:
+
+ $ java MagicSquareDriver
+
+ This command should print out a message detailing how you can use the program
+ to actually check/create magic squares.
+
+PROGRAM DESIGN AND IMPORTANT CONCEPTS:
+
+ MagicSquareDriver.java is the actual entrypoint into the program. This serves
+ largely as a way to intercept user input, sanity check that input, and then
+ call out to an actual magic square implementation (located elsewhere) to give
+ the user what they want.
+
+ The actual logic for what it means to be a magic square is located in
+ MagicSquareInterface.java. Defining a ubiquitous interface for a magic square
+ doesn't serve any meaningful purpose other than challenging the author (me) to
+ use an interface. The business logic for the magic square implementation lies
+ in MagicSquare.java, where the "how" of checking/creating a magic square, as
+ well as reading and writing files for magic squares is handled.
+
+TESTING:
+
+ First and foremost, the functionality of the logic defined in MagicSquare.java
+ was ensured to have passed all the tests supplied in MagicSquareTest.java.
+ Additionally, the program was test by hand with several faulty inputs to ensure
+ that an inane request wasn't allowed further than the input sanitization step.
+ If the user supplies 0 arguments, 1 argument, 1 correct argument (-check or
+ -create) with too few arguments beyond that, too many arguments beyond that, or
+ nonsensical arguments beyond that (e.g. a floating point square size), a simple
+ usage message is printed out and the program exits.
+
+ Furthermore, if the user tries to do things resulting in an error that can't be
+ checked during input sanitization, the error is propagated and returned back to
+ the user. For example, if the user tries to check a file that doesn't exist, a
+ FileNotFoundException is thrown and crashes the program.
+
+DISCUSSION:
+
+ I wouldn't say the programming itself was very difficult, as it was mostly a
+ review of things I've learned in previous classes/experiences. I did have to
+ look up a few things just to remind myself of a couple menial tasks, such as
+ parsing a String as an int [1], but overall the programming was fairly routine.
+
+ Most of the difficulty (perhaps difficulty is the wrong word... Work?
+ Non-routine excercise?) came from writing the javadocs. I've found javadocs to
+ be well worth the effort in previous projects that grew to a size where
+ forgetting the nuances of a method was common, but it's still in the process of
+ becoming routine the same way writing code has.
+
+ [1] https://stackoverflow.com/questions/5585779/how-do-i-convert-a-string-to-an-int-in-java
