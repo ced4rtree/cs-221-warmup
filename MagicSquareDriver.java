@@ -13,7 +13,7 @@ public class MagicSquareDriver {
             "MagicSquareDriver usage:",
             "java MagicSquareDriver <-check | -create> <filename> < |size>",
             "",
-            "\t-check <filename>:\tVerify whether or not the data within <filename> is a magic square",
+            "\t-check <filename>:\t\tVerify whether or not the data within <filename> is a magic square",
             "\t-create <filename> <size>:\tWrite out a <size>x<size> magic square to <filename>.",
             "\t\tNote that <size> cannot be an even number, and this program will not accept an even <size>."
         };
