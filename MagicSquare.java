@@ -151,19 +151,17 @@ public class MagicSquare implements MagicSquareInterface {
             int[][] ret = new int[dimensionality][dimensionality];
             for (int i = 0; i < dimensionality; i++) {
                 for (int j = 0; j < dimensionality; j++) {
-                    try {
-                        ret[i][j] = scanner.nextInt();
-                    } catch (NoSuchElementException e) {
-                        // InputMismatchException inherits from
-                        // NoSuchElementException, so don't need to handle that case
-                        // separately.
-
-                        throw new FileNotFoundException();
-                    }
+                    ret[i][j] = scanner.nextInt();
                 }
             }
 
             return ret;
+        } catch (NoSuchElementException e) {
+            // InputMismatchException inherits from
+            // NoSuchElementException, so don't need to handle that case
+            // separately.
+
+            throw new FileNotFoundException();
         }
     }
 
